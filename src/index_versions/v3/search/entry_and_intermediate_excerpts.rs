@@ -140,7 +140,8 @@ impl From<EntryAndIntermediateExcerpts> for OutputResult {
             .filter(|&ie| ie.source == WordListSource::Title)
             .map(|ie| {
                 let space_offset = if ie.word_index == 0 { 0 } else { 1 };
-                let beginning = split_title[0..ie.word_index].join(" ").len() + space_offset;
+                // let beginning = split_title[0..ie.word_index].join(" ").len() + space_offset;
+                let beginning = space_offset;
                 HighlightRange {
                     beginning,
                     end: beginning + ie.query.len(),

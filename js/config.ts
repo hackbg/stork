@@ -20,7 +20,7 @@ export const defaultConfig: Readonly<Configuration> = {
   showScores: false,
   showCloseButton: true,
   minimumQueryLength: 3,
-  forceOverwrite: false,
+  forceOverwrite: true,
   onQueryUpdate: undefined,
   onResultSelected: undefined,
   onResultsHidden: undefined,

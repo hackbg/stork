@@ -79,19 +79,27 @@ export class Entity {
     this.domManager.render(this.generateRenderConfig());
   }
 
+  private async asyncParse(string: string) {
+    return await new Response(string).json();
+  }
+
   registerIndex(data: Uint8Array): Promise<void> {
     return new Promise((resolve, reject) => {
-      const indexInfo = JSON.parse(wasm_register_index(this.name, data));
-      if (indexInfo.error) {
-        reject(new StorkError(indexInfo.error));
-      } else {
-        if (this.config.printIndexInfo) {
-          console.log(indexInfo);
+      (async () => {
+        // const indexInfo = JSON.parse(wasm_register_index(this.name, data));
+        const indexInfo = await this.asyncParse(
+          wasm_register_index(this.name, data)
+        );
+        if (indexInfo.error) {
+          reject(new StorkError(indexInfo.error));
+        } else {
+          if (this.config.printIndexInfo) {
+            console.log(indexInfo);
+          }
+          this.state = "ready";
+          resolve(indexInfo);
         }
-
-        this.state = "ready";
-        resolve(indexInfo);
-      }
+      })();
     });
   }
 

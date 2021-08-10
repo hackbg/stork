@@ -55,7 +55,7 @@ pub fn search(index: &Index, query: &str) -> SearchOutput {
         .collect();
     output_results.sort_by_key(|or| or.entry.title.clone());
     output_results.sort_by_key(|or| -(or.score as i64));
-    output_results.truncate(index.config.displayed_results_count as usize);
+    // output_results.truncate(index.config.displayed_results_count as usize);
 
     SearchOutput {
         results: output_results,

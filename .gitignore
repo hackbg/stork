@@ -7,6 +7,7 @@ node_modules
 /pkg
 /wasm-pack.log
 coverage
+package-lock.json
 
 # Test Files
 scripts/*_exe.sh

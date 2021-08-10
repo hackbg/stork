@@ -244,10 +244,12 @@ export class EntityDom {
         Promise.resolve(
           this.entity.config.onResultSelected(this.getQuery(), result)
         ).finally(() => {
-          window.location.assign(result.entry.url);
+          // window.location.assign(result.entry.url);
+          window.open(result.entry.url, "_blank");
         });
       } else {
-        window.location.assign(result.entry.url);
+        // window.location.assign(result.entry.url);
+        window.open(result.entry.url, "_blank");
       }
     }
   }
